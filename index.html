@@ -1,10 +1,73 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Linking Js File</title>
-    </head>
+<head>
+  <title>Shopping Cart</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    #quantityDisplay {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+    input, button {
+      margin: 5px;
+    }
+  </style>
+</head>
 <body>
-<h2>Hello fron HTML</h2>
-<script src="script.js"></script>
-</html>
+
+  <h1>Simple Shopping Cart</h1>
+
+  <div id="quantityDisplay">Cart: $0</div>
+
+  <button onclick="addToCart(1)">Add $1</button>
+  <button onclick="addToCart(5)">Add $5</button>
+  <button onclick="addToCart(10)">Add $10</button>
+  <button onclick="resetCart()">Reset Cart</button>
+
+  <br><br>
+
+  <input type="number" id="updateInput" placeholder="Enter new amount">
+  <button onclick="updateQuantity()">Update Cart</button>
+
+  <script>
+    let cartQuantity = 0;
+
+    function viewQuantity() {
+      console.log("Cart: $" + cartQuantity);
+    }
+
+    function addToCart(amount) {
+      cartQuantity += amount;
+      console.log("Cart: $" + cartQuantity);
+      displayQuantity();
+    }
+
+    function resetCart() {
+      cartQuantity = 0;
+      console.log("Cart reset");
+      displayQuantity();
+    }
+
+    function updateQuantity() {
+      let value = document.getElementById("updateInput").value;
+      let quantity = Number(value);
+
+      if (quantity >= 0) {
+        cartQuantity = quantity;
+        console.log("Cart updated: $" + cartQuantity);
+        displayQuantity();
+      } else {
+        alert("Enter a valid number");
+      }
+    }
+
+    function displayQuantity() {
+      document.getElementById("quantityDisplay").innerText = "Cart: $" + cartQuantity;
+    }
+  </script>
+
 </body>
+</html>
